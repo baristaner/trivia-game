@@ -15,6 +15,8 @@ const TriviaGame = () => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
+  const [timer, setTimer] = useState(15); // Set the initial timer value (in seconds)
+  const [timerId, setTimerId] = useState(null);
 
 
   useEffect(() => {
@@ -28,6 +30,27 @@ const TriviaGame = () => {
     setCurrentQuestion(questionsData[currentQuestionIndex]);
     setIsAnswerCorrect(null); // Reset the answer correctness state
   }, [currentQuestionIndex]);
+
+  useEffect(() => {
+    // Set up the timer interval
+    const id = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 0) {
+          // Timer reached zero, handle it (e.g., trigger game over)
+          clearInterval(id);
+          setShowGameOverModal(true);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+
+    // Save the timer interval ID
+    setTimerId(id);
+
+    // Clean up the timer interval on component unmount
+    return () => clearInterval(id);
+  }, []); // Run this effect once on component mount
 
   const saveScore = (newScore) => {
     // Save score to localStorage
@@ -50,6 +73,7 @@ const TriviaGame = () => {
 
     setScore(newScore);
     saveScore(newScore);
+    setTimer(15); // Reset the timer
 
     // Check if the score is negative, trigger game over immediately
     if (newScore <= 0) {
@@ -117,18 +141,33 @@ const TriviaGame = () => {
 
   const resetGame = () => {
     const shuffledQuestions = [...questionsData].sort(() => Math.random() - 0.5);
-
+    clearInterval(timerId);
     setScore(0);
     setHintsRemaining(3);
     setPassesRemaining(3);
     setCurrentQuestionIndex(0);
     setCurrentQuestion(shuffledQuestions[0]);
     setShowGameOverModal(false);
+    
+    setTimer(15);
+    const id = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 0) {
+          // Timer reached zero, handle it (e.g., trigger game over)
+          clearInterval(id);
+          setShowGameOverModal(true);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  
+    // Save the new timer interval ID
+    setTimerId(id);
   };
   
 
   const handleCloseModal = () => {
-    // Close the game over modal or perform any other necessary actions
     setShowGameOverModal(false);
   };
 
@@ -141,6 +180,7 @@ const TriviaGame = () => {
           <Card.Text className="hints-passes">
             Hints Remaining: {hintsRemaining} | Passes Remaining: {passesRemaining}
           </Card.Text>
+          <p className="timer">Time Remaining: {timer} seconds</p>
           {currentQuestion && (
             <>
               <Card.Title className="question-title">{currentQuestion.question}</Card.Title>
@@ -180,6 +220,7 @@ const TriviaGame = () => {
                 >
                   Pass
                 </Button>
+                
               </div>
             </>
           )}
@@ -187,19 +228,21 @@ const TriviaGame = () => {
       </Card>
 
       {/* Game Over Modal */}
-      <Modal show={showGameOverModal} onHide={handleCloseModal} className="game-over-modal">
-        <Modal.Header closeButton>
-          <Modal.Title>Game Over</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Your final score is: {score}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={resetGame}>
-            Play Again
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Modal show={showGameOverModal} onHide={handleCloseModal} className="game-over-modal" >
+
+       
+  <Modal.Header closeButton style={{ backgroundColor: '#160F30',color:'#EAE7AF',borderRadius:'0px' }}>
+    <Modal.Title>Game Over</Modal.Title>
+  </Modal.Header>
+  <Modal.Body style={{ backgroundColor: '#241663',color:'#EAE7AF',borderRadius:'0px' }}>
+    <p>Your final score is: {score}</p>
+  </Modal.Body>
+  <Modal.Footer style={{ backgroundColor: '#160F30',borderRadius:'0px' }}>
+    <Button variant="primary" onClick={resetGame}>
+      Play Again
+    </Button>
+  </Modal.Footer>
+</Modal>
     </Container>
   );
 };
