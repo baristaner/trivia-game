@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Dünyanın en büyük okyanusu hangisidir?",
+        "options": ["Atlantik", "Hint", "Pasifik", "Arktik"],
+        "correctAnswer": "Pasifik"
+    },
+    {
+        "question": "Hangi gezegen Güneş Sistemi'ndeki en büyük gezegendir?",
+        "options": ["Venüs", "Mars", "Satürn", "Jüpiter"],
+        "correctAnswer": "Jüpiter"
+    },
+    {
+        "question": "Hangi ünlü ressam 'Yıldızlı Gece' adlı tablosuyla tanınır?",
+        "options": ["Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Leonardo da Vinci"],
+        "correctAnswer": "Vincent van Gogh"
+    },
+    {
+        "question": "Hangi dil, dünya genelinde en fazla konuşulan dilidir?",
+        "options": ["İngilizce", "Mandarin Çincesi", "İspanyolca", "Hindice"],
+        "correctAnswer": "Mandarin Çincesi"
+    },
+    {
+        "question": "Hangi yıl Amerika Birleşik Devletleri bağımsızlığını ilan etmiştir?",
+        "options": ["1776", "1789", "1801", "1812"],
+        "correctAnswer": "1776"
+    },
+    {
+        "question": "Hangi element tablodaki simgesi 'Fe' olan elementtir?",
+        "options": ["Demir", "Altın", "Gümüş", "Bakır"],
+        "correctAnswer": "Demir"
+    },
+    {
+        "question": "Hangi ülke, 2016 Yaz Olimpiyatları'na ev sahipliği yapmıştır?",
+        "options": ["Brezilya", "Rusya", "Çin", "İngiltere"],
+        "correctAnswer": "Brezilya"
+    },
+    {
+        "question": "Hangi yazar 'Suç ve Ceza' adlı eserin yazarıdır?",
+        "options": ["Leo Tolstoy", "Fyodor Dostoyevsky", "Charles Dickens", "Jane Austen"],
+        "correctAnswer": "Fyodor Dostoyevsky"
+    },
+    {
+        "question": "Hangi gezegen 'Akşam Yıldızı' veya 'Sabah Yıldızı' olarak da bilinir?",
+        "options": ["Jüpiter", "Venüs", "Satürn", "Mars"],
+        "correctAnswer": "Venüs"
+    },
+    {
+        "question": "Hangi ülke, dünyanın en kalabalık nüfuslu ülkesidir?",
+        "options": ["Hindistan", "Çin", "Amerika Birleşik Devletleri", "Endonezya"],
+        "correctAnswer": "Çin"
+    },
+    {
+        "question": "Hangi ünlü bilim adamı kütle enerji denklemini E=mc² formülüyle ifade etmiştir?",
+        "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Niels Bohr"],
+        "correctAnswer": "Albert Einstein"
+    },
+    {
+        "question": "Hangi gezegen 'Kırmızı Gezegen' olarak da bilinir?",
+        "options": ["Jüpiter", "Venüs", "Mars", "Satürn"],
+        "correctAnswer": "Mars"
+    },
+    {
+        "question": "Hangi yıl, Ay'a ilk insanlı iniş gerçekleşmiştir?",
+        "options": ["1965", "1969", "1973", "1981"],
+        "correctAnswer": "1969"
+    },
+    {
+        "question": "Hangi ülke, Vikinglerin kökenidir?",
+        "options": ["Norveç", "İsveç", "Danimarka", "İzlanda"],
+        "correctAnswer": "İzlanda"
+    },
+    {
+        "question": "Hangi yıl, Berlin Duvarı'nın yıkılmasıyla sonuçlanan olaylar gerçekleşmiştir?",
+        "options": ["1985", "1989", "1992", "1995"],
+        "correctAnswer": "1989"
+    },
+    {
+        "question": "Hangi hayvan, dünya üzerindeki en büyük memelidir?",
+        "options": ["Goril", "Fil", "Gergedan", "Mavi Balina"],
+        "correctAnswer": "Mavi Balina"
+    },
+    {
+        "question": "Hangi yazar, 'Cesur Yeni Dünya' adlı distopik romanın yazarıdır?",
+        "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Philip K. Dick"],
+        "correctAnswer": "Aldous Huxley"
+    },
+    {
+        "question": "Hangi renk, elektromanyetik spektrumun görünür bölgesinde yer almaz?",
+        "options": ["Kırmızı", "Mavi", "Yeşil", "Ultraviyole"],
+        "correctAnswer": "Ultraviyole"
+    },
+    {
+        "question": "Hangi ünlü sanatçı, 'Guernica' tablosunun yaratıcısıdır?",
+        "options": ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Leonardo da Vinci"],
+        "correctAnswer": "Pablo Picasso"
+    },
+    {
+        "question": "Hangi gezegen, diğer gezegenlere göre en yüksek sıcaklıklara sahiptir?",
+        "options": ["Jüpiter", "Venüs", "Satürn", "Mars"],
+        "correctAnswer": "Venüs"
+    }
+]
