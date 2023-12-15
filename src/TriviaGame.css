@@ -12,17 +12,6 @@ body {
   color:#EAE7AF;
 }
 
-
-
-.game-over-modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Set the height of the modal to the full viewport height */
-  margin: 0; /* Remove default margin */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 .game-title {
   font-size: 2em;
   margin-bottom: 20px;

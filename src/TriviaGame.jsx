@@ -1,11 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-// src/TriviaGame.js
-import React, { useState, useEffect } from 'react';
-import { Container, Button, Card, Modal } from 'react-bootstrap';
-import './TriviaGame.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react";
+import { Container, Button, Card, Modal,ProgressBar } from "react-bootstrap";
+import "./TriviaGame.css";
+import AnswerModal from "./components/AnswerModal";
+import GameOverModal from "./components/GameOverModal";
 
 // Assuming you have the questions in a separate file
-import questionsData from './questions.json';
+import questionsData from "./questions.json";
 
 const TriviaGame = () => {
   const [score, setScore] = useState(0);
@@ -17,11 +18,11 @@ const TriviaGame = () => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [timer, setTimer] = useState(15); // Set the initial timer value (in seconds)
   const [timerId, setTimerId] = useState(null);
-
+  const [showAnswerModal, setShowAnswerModal] = useState(false);
 
   useEffect(() => {
     // Load score from localStorage on component mount
-    const storedScore = localStorage.getItem('score');
+    const storedScore = localStorage.getItem("score");
     if (storedScore) {
       setScore(parseInt(storedScore, 10));
     }
@@ -54,7 +55,7 @@ const TriviaGame = () => {
 
   const saveScore = (newScore) => {
     // Save score to localStorage
-    localStorage.setItem('score', newScore.toString());
+    localStorage.setItem("score", newScore.toString());
   };
 
   const handleOptionClick = (selectedOption) => {
@@ -69,6 +70,8 @@ const TriviaGame = () => {
       // Update score for incorrect answer (-5 points)
       newScore = Math.max(newScore - 5, 0); // Ensure the score is not negative
       setIsAnswerCorrect(false);
+      setShowAnswerModal(true);
+      clearInterval(timerId);
     }
 
     setScore(newScore);
@@ -88,7 +91,37 @@ const TriviaGame = () => {
       }
     }
   };
+
+  const handleNextQuestion = () => {
+    setShowAnswerModal(false); // Close the AnswerModal
   
+    // Reset the timer
+    setTimer(15);
+    
+    // Start a new timer interval
+    const id = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 0) {
+          // Timer reached zero, handle it (e.g., trigger game over)
+          clearInterval(id);
+          setShowGameOverModal(true);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  
+    // Save the new timer interval ID
+    setTimerId(id);
+  
+    // Move to the next question or show the game over modal
+    if (currentQuestionIndex + 1 < questionsData.length) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      // Game over logic (e.g., display a message, reset game, etc.)
+      setShowGameOverModal(true);
+    }
+  };
 
   const handleHint = () => {
     if (hintsRemaining > 0) {
@@ -114,7 +147,9 @@ const TriviaGame = () => {
 
       // Update the options to reveal the correct and one incorrect option
       updatedQuestion.options = updatedQuestion.options.map((option, index) =>
-        index === correctAnswerIndex || index === randomIncorrectIndex ? option : 'Hidden'
+        index === correctAnswerIndex || index === randomIncorrectIndex
+          ? option
+          : "Hidden"
       );
 
       // Update the current question with hints applied
@@ -126,21 +161,45 @@ const TriviaGame = () => {
     if (passesRemaining > 0) {
       // Decrement passesRemaining
       setPassesRemaining(passesRemaining - 1);
-
+  
+      // Stop the timer
+      clearInterval(timerId);
+  
       // Move to the next question or end the game
       if (currentQuestionIndex + 1 < questionsData.length) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
         // Game over logic (e.g., display a message, reset game, etc.)
-        alert('Game Over! Your final score is: ' + score);
+        alert("Game Over! Your final score is: " + score);
         // Reset the game if needed
         resetGame();
       }
+  
+      // Reset the timer
+      setTimer(15);
+  
+      // Start a new timer interval
+      const id = setInterval(() => {
+        setTimer((prevTimer) => {
+          if (prevTimer === 0) {
+            // Timer reached zero, handle it (e.g., trigger game over)
+            clearInterval(id);
+            setShowGameOverModal(true);
+            return 0;
+          }
+          return prevTimer - 1;
+        });
+      }, 1000);
+  
+      // Save the new timer interval ID
+      setTimerId(id);
     }
   };
 
   const resetGame = () => {
-    const shuffledQuestions = [...questionsData].sort(() => Math.random() - 0.5);
+    const shuffledQuestions = [...questionsData].sort(
+      () => Math.random() - 0.5
+    );
     clearInterval(timerId);
     setScore(0);
     setHintsRemaining(3);
@@ -148,7 +207,8 @@ const TriviaGame = () => {
     setCurrentQuestionIndex(0);
     setCurrentQuestion(shuffledQuestions[0]);
     setShowGameOverModal(false);
-    
+    localStorage.removeItem("score");
+
     setTimer(15);
     const id = setInterval(() => {
       setTimer((prevTimer) => {
@@ -161,11 +221,10 @@ const TriviaGame = () => {
         return prevTimer - 1;
       });
     }, 1000);
-  
+
     // Save the new timer interval ID
     setTimerId(id);
   };
-  
 
   const handleCloseModal = () => {
     setShowGameOverModal(false);
@@ -178,18 +237,27 @@ const TriviaGame = () => {
         <Card.Body>
           <Card.Title className="score-title">Score: {score}</Card.Title>
           <Card.Text className="hints-passes">
-            Hints Remaining: {hintsRemaining} | Passes Remaining: {passesRemaining}
+            Hints Remaining: {hintsRemaining} | Passes Remaining:{" "}
+            {passesRemaining}
           </Card.Text>
-          <p className="timer">Time Remaining: {timer} seconds</p>
+          <div className="progress-container">
+      <ProgressBar
+        variant="danger"
+        now={(timer / 15) * 100} // Adjust the progress based on your timer duration
+      />
+      <p className="timer-label" style={{color:"white"}}>Time Remaining: {timer}s</p>
+    </div>
           {currentQuestion && (
             <>
-              <Card.Title className="question-title">{currentQuestion.question}</Card.Title>
+              <Card.Title className="question-title">
+                {currentQuestion.question}
+              </Card.Title>
               <div className="options-container">
                 {currentQuestion.options.map((option, index) => (
                   <Button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    disabled={option === 'Hidden'}
+                    disabled={option === "Hidden"}
                     className="option-button"
                   >
                     {option}
@@ -197,13 +265,17 @@ const TriviaGame = () => {
                 ))}
               </div>
               {isAnswerCorrect !== null && (
-                <p className={`answer-status ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
+                <p
+                  className={`answer-status ${
+                    isAnswerCorrect ? "correct" : "incorrect"
+                  }`}
+                >
                   {isAnswerCorrect
-                    ? 'Correct! You can proceed to the next question.'
+                    ? "Correct! You can proceed to the next question."
                     : `Incorrect! The correct answer is: ${currentQuestion.correctAnswer}`}
                 </p>
               )}
-               <div className="action-buttons">
+              <div className="action-buttons">
                 <Button
                   variant="primary"
                   onClick={handleHint}
@@ -220,29 +292,24 @@ const TriviaGame = () => {
                 >
                   Pass
                 </Button>
-                
               </div>
             </>
           )}
         </Card.Body>
       </Card>
 
-      {/* Game Over Modal */}
-      <Modal show={showGameOverModal} onHide={handleCloseModal} className="game-over-modal" >
+      <GameOverModal
+      gameScore={score}
+      resetButton={resetGame}
+      showGameOverModal={showGameOverModal}
+      />
 
-       
-  <Modal.Header closeButton style={{ backgroundColor: '#160F30',color:'#EAE7AF',borderRadius:'0px' }}>
-    <Modal.Title>Game Over</Modal.Title>
-  </Modal.Header>
-  <Modal.Body style={{ backgroundColor: '#241663',color:'#EAE7AF',borderRadius:'0px' }}>
-    <p>Your final score is: {score}</p>
-  </Modal.Body>
-  <Modal.Footer style={{ backgroundColor: '#160F30',borderRadius:'0px' }}>
-    <Button variant="primary" onClick={resetGame}>
-      Play Again
-    </Button>
-  </Modal.Footer>
-</Modal>
+      <AnswerModal
+        correctAnswer={currentQuestion?.correctAnswer}
+        onNextQuestion={handleNextQuestion}
+        showModal={showAnswerModal}
+        onHide={() => setShowAnswerModal(false)}
+      />
     </Container>
   );
 };
