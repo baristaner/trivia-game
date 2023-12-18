@@ -98,5 +98,10 @@
         "question": "Hangi gezegen, diğer gezegenlere göre en yüksek sıcaklıklara sahiptir?",
         "options": ["Jüpiter", "Venüs", "Satürn", "Mars"],
         "correctAnswer": "Venüs"
+    },
+    {   
+        "question": "Hangisi sürüngen hayvan değildir?"
+        "options": ["Kaplumbağa", "Bukalemun", "Fok", "Ayı"],
+        "correctAnswer": "Fok"
     }
 ]
