@@ -19,6 +19,9 @@ const TriviaGame = () => {
   const [timer, setTimer] = useState(15); // Set the initial timer value (in seconds)
   const [timerId, setTimerId] = useState(null);
   const [showAnswerModal, setShowAnswerModal] = useState(false);
+  const [getCorrectAnswer,setCorrectAnswer] = useState();
+  const [viewedQuestions, setViewedQuestions] = useState([]);
+
 
   useEffect(() => {
     // Load score from localStorage on component mount
@@ -27,8 +30,11 @@ const TriviaGame = () => {
       setScore(parseInt(storedScore, 10));
     }
 
+    // Randomize questions
+    const shuffledQuestions = [...questionsData].sort(() => Math.random() - 0.5);
+
     // Set the first question
-    setCurrentQuestion(questionsData[currentQuestionIndex]);
+    setCurrentQuestion(shuffledQuestions[currentQuestionIndex]);
     setIsAnswerCorrect(null); // Reset the answer correctness state
   }, [currentQuestionIndex]);
 
@@ -53,6 +59,20 @@ const TriviaGame = () => {
     return () => clearInterval(id);
   }, []); // Run this effect once on component mount
 
+
+  // Music on loop
+  useEffect(() => {
+    const audio = new Audio('public/music/music.mp3');
+    audio.loop = true; 
+    audio.volume = 0.5;
+    audio.play(); 
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []); 
+
   const saveScore = (newScore) => {
     // Save score to localStorage
     localStorage.setItem("score", newScore.toString());
@@ -61,17 +81,26 @@ const TriviaGame = () => {
   const handleOptionClick = (selectedOption) => {
     let newScore = score;
     const correctAnswer = currentQuestion.correctAnswer;
+    
+  
+    setViewedQuestions((prevQuestions) => [...prevQuestions, currentQuestion.id]);
 
     if (selectedOption === correctAnswer) {
       // Update score for correct answer (+10 points)
       newScore += 10;
       setIsAnswerCorrect(true);
+      setCorrectAnswer(null)
     } else {
       // Update score for incorrect answer (-5 points)
       newScore = Math.max(newScore - 5, 0); // Ensure the score is not negative
+      if(newScore <= 0) {
+        setShowAnswerModal(false);
+      } else {
+        setShowAnswerModal(true);
+      }
       setIsAnswerCorrect(false);
-      setShowAnswerModal(true);
       clearInterval(timerId);
+      setCorrectAnswer(correctAnswer);
     }
 
     setScore(newScore);
@@ -91,6 +120,7 @@ const TriviaGame = () => {
       }
     }
   };
+  
 
   const handleNextQuestion = () => {
     setShowAnswerModal(false); // Close the AnswerModal
@@ -264,17 +294,8 @@ const TriviaGame = () => {
                   </Button>
                 ))}
               </div>
-              {isAnswerCorrect !== null && (
-                <p
-                  className={`answer-status ${
-                    isAnswerCorrect ? "correct" : "incorrect"
-                  }`}
-                >
-                  {isAnswerCorrect
-                    ? "Correct! You can proceed to the next question."
-                    : `Incorrect! The correct answer is: ${currentQuestion.correctAnswer}`}
-                </p>
-              )}
+              
+             
               <div className="action-buttons">
                 <Button
                   variant="primary"
@@ -305,7 +326,7 @@ const TriviaGame = () => {
       />
 
       <AnswerModal
-        correctAnswer={currentQuestion?.correctAnswer}
+        correctAnswer={getCorrectAnswer}
         onNextQuestion={handleNextQuestion}
         showModal={showAnswerModal}
         onHide={() => setShowAnswerModal(false)}
