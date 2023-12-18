@@ -103,5 +103,65 @@
         "question": "Hangisi sürüngen hayvan değildir?",
         "options": ["Kaplumbağa", "Bukalemun", "Fok", "Ayı"],
         "correctAnswer": "Fok"
+     },
+     {
+        "questions": "Aşağıdakilerden hangisi çocuk hastalığıdır?",
+        "options": ["Kabakulak", "Nezle", "Kanser", "Diş Ağırıs"],
+        "coorectAnswer": "Kabakulak"
+     },
+     {   
+        "questions": "Çanakkale Savaşı sırasında 215 kg’lık mermiyi tek başına kaldıran Türk askeri kimdir?",
+        "options": ["Seyit Onbaşı", "Hasan Onbaşı", "Enver Paşa", "Cevat Paşa"],
+        "correctAnswer": "Seyit Onbaşı"
+     },
+     {
+        "questions": "Dünyanın İlk Kadın Savaş Pilotu kimdir?",
+        "options": ["Sabiha Gökçen", "Bedriye Tahir", "Raymonde De Laroche", "Eribe Kartal Hürkuş"],
+        "correctAnswer": "Sabiha Gökçen"
+      },
+      { 
+        "questions": "Uşak İli Hangi Bölgededir?",
+        "options": ["Marmamara Bölgesi", "Ege Bölgesi", "İç Anadolu Bölgesi", "Akdeniz Bölgesi"],
+        "correctAnswer": "Ege Bölgesi"
+      },
+      {    
+          "questions": "Sorgulanmamış bir hayat, yaşanmaya değmez. sözü kime aittir?",
+          "options": ["Platon","Rene Descartes","Eflatun","Socrates"]
+          "correctAnswer": "Socrates"
+      },
+      { 
+          "questions": "Vücuttaki en güçlü kas hangisidir?"
+          "options": ["Bacak Kası", "Dil Kası", "Kol Kası", "Sırt Kası"],
+          "correctAnswer": "Dil Kası"
+      },
+      { 
+          "questions": "Hangisi Afrika kıtasındadır?",
+          "options": ["Mozambik", "Paraguay", "Kolombiya", "Özbekistan"],
+          "correctAnswer": "Mozambik"
+      },
+      { 
+          "questions": "Veganlar hangisini yer?",
+          "options": ["Mantar", "Bal", "Süt", "yumurta"],
+          "correctAnswer": "Mantar"
+      },
+      { 
+          "questions": "Hangisi dünyanın en kalabalık başkentidir?",
+          "options": ["Ankara", "Tokyo", "Mexico","Paris"],
+          "correctAnswer": "Tokyo"
+      },
+      { 
+          "questions": "Dünyanın En Uzun Nehrinin Adı Nedir?",
+          "options": ["Amazon Nehri", "Mississippi Nehri", "Nil nehri","Yellow River"],
+          "correctAnswer": "Nil nehri"
+      },
+      {  
+          "questions": "Kahve ilk nerede keşfedildi?",
+          "options": ["Etiyopya'da", "Yemen'de", "Türkiye'de", "Fransa'da"]
+          "correctAnswer": "Etiyopya'da"
+      },
+      { 
+          "questions": "Hababam Sınıfı kim tarafından yazılmıştır?", 
+          "options": ["Ertem Eğilmez", "Oktay Rifat", "Rıfat Ilgaz", "Orhan Pamuk"],
+          "correctAnswer": "Rıfat Ilgaz"
     }
 ]
