@@ -100,7 +100,7 @@
         "correctAnswer": "Venüs"
     },
     {   
-        "question": "Hangisi sürüngen hayvan değildir?"
+        "question": "Hangisi sürüngen hayvan değildir?",
         "options": ["Kaplumbağa", "Bukalemun", "Fok", "Ayı"],
         "correctAnswer": "Fok"
     }
