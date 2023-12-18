@@ -103,5 +103,10 @@
         "question": "Hangisi sürüngen hayvan değildir?",
         "options": ["Kaplumbağa", "Bukalemun", "Fok", "Ayı"],
         "correctAnswer": "Fok"
+    },
+    {
+        "question": "Duvara asılı bir haritanın sağı her zaman hangi yönü gösterir?",
+        "options": ["Kuzey", "Güney", "Doğu", "Batı"],
+        "correctAnswer": "Doğu"
     }
 ]
