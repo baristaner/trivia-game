@@ -99,14 +99,64 @@
         "options": ["Jüpiter", "Venüs", "Satürn", "Mars"],
         "correctAnswer": "Venüs"
     },
-    {   
-        "question": "Hangisi sürüngen hayvan değildir?",
-        "options": ["Kaplumbağa", "Bukalemun", "Fok", "Ayı"],
-        "correctAnswer": "Fok"
-    },
     {
-        "question": "Duvara asılı bir haritanın sağı her zaman hangi yönü gösterir?",
-        "options": ["Kuzey", "Güney", "Doğu", "Batı"],
-        "correctAnswer": "Doğu"
+        "question": "Aşağıdakilerden hangisi çocuk hastalığıdır?",
+        "options": ["Kabakulak", "Nezle", "Kanser", "Diş Ağırıs"],
+        "coorectAnswer": "Kabakulak"
+     },
+     {   
+        "question": "Çanakkale Savaşı sırasında 215 kg’lık mermiyi tek başına kaldıran Türk askeri kimdir?",
+        "options": ["Seyit Onbaşı", "Hasan Onbaşı", "Enver Paşa", "Cevat Paşa"],
+        "correctAnswer": "Seyit Onbaşı"
+     },
+     {
+        "question": "Dünyanın İlk Kadın Savaş Pilotu kimdir?",
+        "options": ["Sabiha Gökçen", "Bedriye Tahir", "Raymonde De Laroche", "Eribe Kartal Hürkuş"],
+        "correctAnswer": "Sabiha Gökçen"
+      },
+      { 
+        "question": "Uşak İli Hangi Bölgededir?",
+        "options": ["Marmamara Bölgesi", "Ege Bölgesi", "İç Anadolu Bölgesi", "Akdeniz Bölgesi"],
+        "correctAnswer": "Ege Bölgesi"
+      },
+      {    
+          "question": "Sorgulanmamış bir hayat, yaşanmaya değmez. sözü kime aittir?",
+          "options": ["Platon","Rene Descartes","Eflatun","Socrates"],
+          "correctAnswer": "Socrates"
+      },
+      { 
+          "question": "Vücuttaki en güçlü kas hangisidir?",
+          "options": ["Bacak Kası", "Dil Kası", "Kol Kası", "Sırt Kası"],
+          "correctAnswer": "Dil Kası"
+      },
+      { 
+          "question": "Hangisi Afrika kıtasındadır?",
+          "options": ["Mozambik", "Paraguay", "Kolombiya", "Özbekistan"],
+          "correctAnswer": "Mozambik"
+      },
+      { 
+          "question": "Veganlar hangisini yer?",
+          "options": ["Mantar", "Bal", "Süt", "yumurta"],
+          "correctAnswer": "Mantar"
+      },
+      { 
+          "question": "Hangisi dünyanın en kalabalık başkentidir?",
+          "options": ["Ankara", "Tokyo", "Mexico","Paris"],
+          "correctAnswer": "Tokyo"
+      },
+      { 
+          "question": "Dünyanın En Uzun Nehrinin Adı Nedir?",
+          "options": ["Amazon Nehri", "Mississippi Nehri", "Nil nehri","Yellow River"],
+          "correctAnswer": "Nil nehri"
+      },
+      {  
+          "question": "Kahve ilk nerede keşfedildi?",
+          "options": ["Etiyopya'da", "Yemen'de", "Türkiye'de", "Fransa'da"],
+          "correctAnswer": "Etiyopya'da"
+      },
+      { 
+          "question": "Hababam Sınıfı kim tarafından yazılmıştır?", 
+          "options": ["Ertem Eğilmez", "Oktay Rifat", "Rıfat Ilgaz", "Orhan Pamuk"],
+          "correctAnswer": "Rıfat Ilgaz"
     }
 ]
