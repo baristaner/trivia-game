@@ -22,7 +22,6 @@ const TriviaGame = () => {
   const [getCorrectAnswer,setCorrectAnswer] = useState();
   const [viewedQuestions, setViewedQuestions] = useState([]);
 
-
   useEffect(() => {
     // Load score from localStorage on component mount
     const storedScore = localStorage.getItem("score");
@@ -179,7 +178,7 @@ const TriviaGame = () => {
       updatedQuestion.options = updatedQuestion.options.map((option, index) =>
         index === correctAnswerIndex || index === randomIncorrectIndex
           ? option
-          : "Hidden"
+          : "Gizlendi"
       );
 
       // Update the current question with hints applied
@@ -262,12 +261,12 @@ const TriviaGame = () => {
 
   return (
     <Container className="trivia-container">
-      <h1 className="game-title">Trivia Game</h1>
+      <h1 className="game-title">Bilgi Yarışması</h1>
       <Card className="game-card">
         <Card.Body>
-          <Card.Title className="score-title">Score: {score}</Card.Title>
+          <Card.Title className="score-title">Skor: {score}</Card.Title>
           <Card.Text className="hints-passes">
-            Hints Remaining: {hintsRemaining} | Passes Remaining:{" "}
+            Kalan Tüyolar: {hintsRemaining} | Kalan Pas Hakkı:{" "}
             {passesRemaining}
           </Card.Text>
           <div className="progress-container">
@@ -303,7 +302,7 @@ const TriviaGame = () => {
                   disabled={hintsRemaining === 0}
                   className="hint-pass-button"
                 >
-                  Hint
+                  Tüyo Al
                 </Button>
                 <Button
                   variant="warning"
@@ -311,7 +310,7 @@ const TriviaGame = () => {
                   disabled={passesRemaining === 0}
                   className="hint-pass-button"
                 >
-                  Pass
+                  Pas
                 </Button>
               </div>
             </>
